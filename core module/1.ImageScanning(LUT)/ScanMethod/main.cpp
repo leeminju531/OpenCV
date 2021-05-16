@@ -35,10 +35,30 @@ int main()
         J = ScanImageAndReduceC(clone_i, table);
     }
     cv::Mat clone_i = I.clone();
-    J = ScanImageAndReduceC(clone_i, table);
-    //J = ScanImageAndReduceIterator(clone_i, table);
-    //J = ScanImageAndReduceRandomAccess(clone_i, table);
 
+    // 1 锅 规过
+    J = ScanImageAndReduceC(clone_i, table);
+
+    // 2 锅 规过
+    //J = ScanImageAndReduceIterator(clone_i, table);
+     
+    // 3 锅 规过
+    //J = ScanImageAndReduceRandomAccess(clone_i, table);
+    
+    // 4 锅 规过
+    /*
+    //! [table-init]
+    Mat lookUpTable(1, 256, CV_8U);
+    uchar* p = lookUpTable.ptr();
+    for (int i = 0; i < 256; ++i)
+        p[i] = table[i];
+    //! [table-init]]
+    Mat J;
+    //! [table-use]
+    LUT(I, lookUpTable, J);
+    //! [table-use]
+    */
+    
 
     imshow("Original Image ", I);
     imshow("after LookupTable(color reduced Image)", J);
