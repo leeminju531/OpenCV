@@ -21,10 +21,10 @@ int main(int argc, char** argv)
     Mat dst = src.clone();
 
     //![blur]
-    GaussianBlur(src, dst, Size(21, 21), 0, 0);
+    bilateralFilter(src, dst, 9, 150,150);
 
     imshow("Origin", src);
-    imshow("median Filter", dst);
+    imshow("bilateralFilter", dst);
     waitKey(0);
 
     return 0;
